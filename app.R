@@ -6,6 +6,7 @@ generate_story <- function(noun, verb, adjective, adverb) {
     Once upon a time, there was a {adjective} {noun} who loved to
     {verb} {adverb}. It was the funniest thing ever!
   ")
+  cat("There's a story now.", file = stderr())
 }
 
 ui <- fluidPage(
@@ -29,6 +30,7 @@ server <- function(input, output) {
   story <- eventReactive(input$submit, {
     generate_story(input$noun1, input$verb, input$adjective, input$adverb)
   })
+
   output$story <- renderText({
     story()
   })
